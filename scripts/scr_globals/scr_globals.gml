@@ -19,5 +19,25 @@
 // map legend
 #macro L_PLATFORM "X"
 
+enum TRANS_STATE
+{
+	OFF,
+	GOTO,
+	INTRO,
+}
+
 // red, blue, green, yellow
 global.collected = [ false, false, false, false ];
+global.seeds_left = 4;
+global.msg_start = [
+	"You got the red one... wonderful. Be careful of lazors.",
+	"You got the blue one... great. Mind the slime-y platforms.",
+	"You got the green one... good. Don't touch the spikes.",
+	"You got the yellow one... amazing! Avoid the dustballs.",
+]
+global.msg_end = [
+	"You fool! Now I have the power of the God Tree! MUAHAHAHAHAHA!!",
+	"Just one more!",
+	"Two More. Go.",
+	"Grab three more seeds for me, and you will beat the game!",
+];

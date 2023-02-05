@@ -25,6 +25,8 @@ ax = 0.5; // horizontal acceleration
 vx = 0;
 vy = 0;
 
+seed_on_head = noone;
+
 sprite_idle = spr_lion;
 sprite_walk = spr_lion; // TODO
 sprite_jump = spr_lion; // TODO

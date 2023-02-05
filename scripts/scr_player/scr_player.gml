@@ -29,14 +29,22 @@ function PlayerStateMove()
 		
 		if (jump_pressed && jump_buffer > 0)
 		{
-			var _inst = instance_place(x, y, obj_seed);
-			if (instance_exists(_inst))
+			var _seed_inst = instance_place(x, y, par_seed);
+			var _pot_inst = instance_place(x, y + 5, obj_pot);
+			if (instance_exists(_pot_inst))
+			{
+				// plant seed
+				state = PlayerStatePlantSeed;
+			}
+			else if (instance_exists(_seed_inst) && seed_on_head == noone)
 			{
 				// pickup seed
-				_inst.on_head = true;
+				seed_on_head = _seed_inst;
+				seed_on_head.follow = obj_player;
 			}
 			else
 			{
+				// jump
 				vy -= jump_speed;
 			}
 		}
@@ -63,3 +71,46 @@ function PlayerStateMove()
 		y += vy;
 	}
 }
+
+function PlayerStatePlantSeed()
+{
+	can_move = false;
+	var _msg = "";
+	
+	if (seed_on_head != noone)
+	{
+		with (seed_on_head)
+		{
+			follow = obj_pot;
+		
+			if (obj_transition.trans_state == TRANS_STATE.OFF &&
+				place_meeting(x, y, obj_pot))
+			{
+				global.collected[seed] = true;
+				global.seeds_left--;
+				_msg = global.msg_start[seed] + "\n" + global.msg_end[global.seeds_left];
+				transition_start(room, 3, _msg);
+			}
+		}
+	}
+	else
+	{
+		transition_start(room, 3, "You need a seed to plant.");
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
