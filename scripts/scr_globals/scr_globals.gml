@@ -18,3 +18,6 @@
 
 // map legend
 #macro L_PLATFORM "X"
+
+// red, blue, green, yellow
+global.collected = [ false, false, false, false ];

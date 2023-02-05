@@ -1,25 +1,30 @@
 /// @desc ?
 
-var _left = 0;
-var _right = 0;
-var _jump = 0;
-
 if (can_move)
 {
-	_left = K_LEFT;
-	_right = K_RIGHT;
-	_jump = K_JUMP_PRESSED;
+	left = K_LEFT;
+	right = K_RIGHT;
+	jump_pressed = K_JUMP_PRESSED;
+	jump_released = K_JUMP_RELEASED;
+	jump_holding = K_JUMP_HOLDING;
+}
+else
+{
+	left = 0;
+	right = 0;
+	jump_pressed = 0;
+	jump_released = 0;
+	jump_holding = 0;
 }
 
-if (horizontal != _right - _left)
+if (horizontal != right - left)
 {
 	changed_direction = true;
-	horizontal = _right - _left;
+	horizontal = right - left;
 }
 else
 {
 	changed_direction = false;
 }
 
-jump = _jump;
 script_execute(state);

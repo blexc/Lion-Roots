@@ -21,16 +21,29 @@ function PlayerStateMove()
 		{
 			move_speed = move_speed_start;
 		}
-		
 		vx = horizontal * move_speed;
 		
-		// jump
-		if (jump && player_is_grounded())
+		// jump and interact
+		if (player_is_grounded())	jump_buffer = jump_buffer_start;
+		else						jump_buffer = max(0, jump_buffer - 1);
+		
+		if (jump_pressed && jump_buffer > 0)
 		{
-			vy -= jump_speed;
+			var _inst = instance_place(x, y, obj_seed);
+			if (instance_exists(_inst))
+			{
+				// pickup seed
+				_inst.on_head = true;
+			}
+			else
+			{
+				vy -= jump_speed;
+			}
 		}
 		
 		// gravity
+		var _gravity_final = GRAVITY;
+		if (vy > 0) _gravity_final *= 0.5; // less gravity when falling
 		vy += GRAVITY;
 		
 		// check for x collision

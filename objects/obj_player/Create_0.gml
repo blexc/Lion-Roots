@@ -2,6 +2,13 @@
 
 state = PlayerStateMove;
 
+// controls
+left = 0;
+right = 0;
+jump_pressed = 0;
+jump_released = 0;
+jump_holding = 0;
+
 can_move = true;
 changed_direction = false;
 
@@ -9,13 +16,12 @@ move_speed = 0;
 move_speed_max = 5;
 move_speed_start = 1;
 
-jump_speed = 0;
-jump_speed_max = 12;
-jump_speed_start = 1;
+jump_speed = 12;
+jump_buffer = 0;
+jump_buffer_start = 5;
 
 horizontal = 0; // horizontal direction
-ax = 0.2; // horizontal acceleration
-ay = 0.5; // jump acceleration
+ax = 0.5; // horizontal acceleration
 vx = 0;
 vy = 0;
 
