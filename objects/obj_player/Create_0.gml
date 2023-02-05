@@ -14,6 +14,7 @@ changed_direction = false;
 
 move_speed = 0;
 move_speed_max = 5;
+move_speed_max_gooy = 2.5;
 move_speed_start = 1;
 
 jump_speed = 12;

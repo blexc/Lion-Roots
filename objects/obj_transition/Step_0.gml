@@ -11,23 +11,17 @@ if (trans_state != TRANS_STATE.OFF)
 	{
 		var _fade_out_step = 1 / sec2frame(fade_out_time_sec);
 		alpha = approach(alpha, 1, _fade_out_step); // fade out
+		
+		// skip fade out
+		if (K_JUMP_PRESSED)
+		{
+			alpha = 1;
+			alarm[0] = 1;
+		}
 	}
 	
 	if (alpha == 1 || alpha == 0)
 	{
-		switch (trans_state)
-		{
-			case TRANS_STATE.INTRO:
-			{
-				trans_state = TRANS_STATE.OFF;
-				break;
-			}
-			case TRANS_STATE.GOTO:
-			{
-				trans_state = TRANS_STATE.INTRO;
-				room_goto(room_target);
-				break;
-			}
-		}
+		if (alarm[0] == -1) alarm[0] = sec2frame(trans_buffer);
 	}
 }

@@ -7,6 +7,15 @@ function player_is_grounded()
 	return noone;
 }
 
+function player_on_goo()
+{
+	with (obj_player)
+	{
+		return global.collected[C.BLUE] && place_meeting(x, y + 1, obj_platform);
+	}
+	return noone;
+}
+
 function PlayerStateMove()
 {
 	with (obj_player)
@@ -15,7 +24,11 @@ function PlayerStateMove()
 		if (horizontal != 0 || changed_direction)
 		{
 			move_speed += ax;
-			move_speed = min(move_speed, move_speed_max);
+			
+			var _max = move_speed_max;
+			if (player_on_goo()) _max = move_speed_max_gooy;
+			
+			move_speed = min(move_speed, _max);
 		}
 		else
 		{
@@ -76,6 +89,8 @@ function PlayerStatePlantSeed()
 {
 	can_move = false;
 	var _msg = "";
+	var _fade_out_time = 3;
+	var _trans_buffer = 3;
 	
 	if (seed_on_head != noone)
 	{
@@ -88,18 +103,25 @@ function PlayerStatePlantSeed()
 			{
 				global.collected[seed] = true;
 				global.seeds_left--;
-				_msg = global.msg_start[seed] + "\n" + global.msg_end[global.seeds_left];
-				transition_start(room, 3, _msg);
+				_msg = global.msg_start[seed] + "\n\n" + global.msg_end[global.seeds_left];
+				transition_start(room, _fade_out_time, _msg, _trans_buffer);
 			}
 		}
 	}
 	else
 	{
-		transition_start(room, 3, "You need a seed to plant.");
+		transition_start(room, _fade_out_time, "You need a seed to plant.", _trans_buffer);
 	}
 }
 
-
+function PlayerStateDie()
+{
+	can_move = false;
+	if (obj_transition.trans_state == TRANS_STATE.OFF)
+	{
+		transition_start(room, 1, "You died.", 1);
+	}
+}
 
 
 

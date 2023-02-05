@@ -1,8 +1,8 @@
 
 if (instance_exists(follow))
 {
-	xfollow = follow.x;	
-	yfollow = follow.y;
+	xfollow = follow.x + offset_x;
+	yfollow = follow.y + offset_y;
 
 	x = lerp(x, xfollow, strength);
 	y = lerp(y, yfollow, strength);

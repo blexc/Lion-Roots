@@ -11,7 +11,7 @@ if (instance_exists(follow))
 	}
 	else if (follow == obj_pot)
 	{
-		_follow_y += 4;
+		_follow_y += 6;
 	}
 	
 	x = lerp(x, _follow_x, 0.5);

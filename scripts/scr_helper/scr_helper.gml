@@ -1,3 +1,18 @@
+function sec2hhmmss(_time)
+{
+	var _seconds, _minutes, _hours;
+	
+	_hours = floor(_time / 3600);
+	_time -= _hours * 3600;
+	
+	_minutes = floor(_time / 60);
+	_time -= _minutes * 60;
+	
+	_seconds = _time;
+	
+	return string(_hours) + ":" + string(_minutes) + ":" + string(_seconds);
+}
+
 function sec2frame(_sec)
 {
 	return _sec * room_speed;
