@@ -9,3 +9,4 @@ Save the dessert by planting the four seeds of the God Tree. Each seed you plant
 
 This was created using GameMaker Studio 2 version v2023.1.0.58.
 
+Completed playable version here: https://blexchapman.itch.io/lion-roots
