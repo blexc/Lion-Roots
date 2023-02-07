@@ -2,7 +2,7 @@ function player_is_grounded()
 {
 	with (obj_player)
 	{
-		return place_meeting(x, y + 1, par_solid);
+		return place_meeting(x, y + 2, par_solid);
 	}
 	return noone;
 }
@@ -11,7 +11,7 @@ function player_on_goo()
 {
 	with (obj_player)
 	{
-		var _plat_inst = instance_place(x, y + 1, obj_platform);
+		var _plat_inst = instance_place(x, y + 2, obj_platform);
 		if (instance_exists(_plat_inst))
 		{
 			return _plat_inst.sprite_index == spr_platform_gooy;
@@ -62,7 +62,7 @@ function PlayerStateMove()
 			else
 			{
 				// jump
-				vy -= jump_speed;
+				vy = -jump_speed;
 			}
 		}
 		
