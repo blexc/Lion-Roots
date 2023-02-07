@@ -11,9 +11,13 @@ function player_on_goo()
 {
 	with (obj_player)
 	{
-		return global.collected[C.BLUE] && place_meeting(x, y + 1, obj_platform);
+		var _plat_inst = instance_place(x, y + 1, obj_platform);
+		if (instance_exists(_plat_inst))
+		{
+			return _plat_inst.sprite_index == spr_platform_gooy;
+		}
 	}
-	return noone;
+	return false;
 }
 
 function PlayerStateMove()
@@ -91,6 +95,7 @@ function PlayerStatePlantSeed()
 	var _msg = "";
 	var _fade_out_time = 3;
 	var _trans_buffer = 3;
+	var _room_goto = room;
 	
 	if (seed_on_head != noone)
 	{
@@ -104,7 +109,8 @@ function PlayerStatePlantSeed()
 				global.collected[seed] = true;
 				global.seeds_left--;
 				_msg = global.msg_start[seed] + "\n\n" + global.msg_end[global.seeds_left];
-				transition_start(room, _fade_out_time, _msg, _trans_buffer);
+				if (global.seeds_left == 0) _room_goto = rm_menu;
+				transition_start(_room_goto, _fade_out_time, _msg, _trans_buffer);
 			}
 		}
 	}
@@ -121,6 +127,7 @@ function PlayerStateDie()
 	{
 		transition_start(room, 1, "You died.", 1);
 	}
+	image_alpha -= 0.05;
 }
 
 

@@ -20,7 +20,7 @@ if (trans_state != TRANS_STATE.OFF)
 		}
 	}
 	
-	if (alpha == 1 || alpha == 0)
+	if (alpha >= 1 || alpha <= 0)
 	{
 		if (alarm[0] == -1) alarm[0] = sec2frame(trans_buffer);
 	}

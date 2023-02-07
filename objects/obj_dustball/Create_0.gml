@@ -1,7 +1,7 @@
 /// @desc ?
 
 follow = obj_player;
-strength = 1.5;
+move_speed = 1.5;
 
 x = room_width;
 y = room_height;

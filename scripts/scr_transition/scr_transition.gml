@@ -1,4 +1,4 @@
-function transition_start(_room_target = room, _fade_out_time_sec = 3, _msg = "", _trans_buffer = 3)
+function transition_start(_room_target = room, _fade_out_time_sec = 3, _msg = "", _trans_buffer = 2)
 {
 	with (obj_transition)
 	{

@@ -1,3 +1,15 @@
+// # of seconds since game start
+function cur_second()
+{
+	return current_time * 0.001;
+}
+
+function oscillate(_start, _amp_in_pix, _period_per_sec)
+{
+	var _sin = sin((2 * pi / _period_per_sec) * cur_second());
+	return _amp_in_pix * _sin + _start;
+}
+
 function sec2hhmmss(_time)
 {
 	var _seconds, _minutes, _hours;

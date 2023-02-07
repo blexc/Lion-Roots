@@ -7,9 +7,6 @@ if (instance_exists(follow))
 	x = lerp(x, xfollow, strength);
 	y = lerp(y, yfollow, strength);
 	
-	//x += (xfollow - x) * strength;
-	//y += (yfollow - y) * strength;
-
 	x = clamp(x, view_w_half, room_width - view_w_half);
 	y = clamp(y, view_h_half, room_height - view_h_half);
 

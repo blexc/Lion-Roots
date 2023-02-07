@@ -1,4 +1,7 @@
 /// @desc ?
 
-counter = 0;
-counter_normalized = 0;
+if (!debug_mode)
+{
+	instance_destroy();
+	exit;
+}

@@ -1,12 +1,15 @@
 /// @desc ?
 
-if (instance_exists(follow))
+if (game_is_playing())
 {
-	xfollow = follow.x;
-	yfollow = follow.y - follow.sprite_height / 2;
+	if (instance_exists(follow))
+	{
+		xfollow = follow.x;
+		yfollow = follow.y - follow.sprite_height * 0.25;
 
-	x = approach(x, xfollow, strength);
-	y = approach(y, yfollow, strength);
+		x = approach(x, xfollow, move_speed);
+		y = approach(y, yfollow, move_speed);
+	}
+
+	image_angle++;
 }
-
-image_angle++;
